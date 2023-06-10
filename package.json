@@ -6,7 +6,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "host": "ng build --prod --output-path docs --base-href /quizclient/"
   },
   "private": true,
   "dependencies": {
