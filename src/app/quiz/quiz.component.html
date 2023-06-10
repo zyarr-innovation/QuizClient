@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="row" *ngIf="quizService.qns && this.quizService.qnProgress != quizService.qns.length">
-  <div class="col s12">
+  <div class="col s12 quiz-font">
     <span>Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
     <div class="progress">
       <div class="determinate" [style.width.%]="progressBarPercentage"></div>
