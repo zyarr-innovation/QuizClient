@@ -1,0 +1,6 @@
+class card {
+    max-width: 60%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 3px solid black;
+}
