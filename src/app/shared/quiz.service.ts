@@ -28,6 +28,14 @@ export class QuizService {
     );
   }
 
+  getRandomIndex(maxIndex: number): number[] {
+    const nums = new Set<number>();
+    while (nums.size !== 20) {
+      nums.add(Math.floor(Math.random() * maxIndex) + 1);
+    }
+    return ([...nums]);
+  }
+
   getParticipantName() {
     var participant = JSON.parse(localStorage.getItem("participant"));
     return participant.Name;
@@ -49,7 +57,10 @@ export class QuizService {
 
   //---------------- Http Methods---------------
   getQuestions() {
-    return of(this.serverRoutes.getQuestionList());
+    let questionList = this.serverRoutes.getQuestionList()
+    let randomIndex = this.getRandomIndex(questionList.length);
+    let fewQuestionList = randomIndex.map(index => questionList[index]);
+    return of(fewQuestionList);
   }
 
   // getAnswers() {
