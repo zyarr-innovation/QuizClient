@@ -59,7 +59,8 @@ export class QuizService {
   getQuestions() {
     let questionList = this.serverRoutes.getQuestionList()
     let randomIndex = this.getRandomIndex(questionList.length);
-    let fewQuestionList = randomIndex.map(index => questionList[index]);
+    //let fewQuestionList = randomIndex.map(index => questionList[index]);
+    let fewQuestionList = questionList
     return of(fewQuestionList);
   }
 
