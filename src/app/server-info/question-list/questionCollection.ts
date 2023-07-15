@@ -165,7 +165,7 @@ export class QuestionCollection {
       },
       {
         "Id": 15,
-        "question": "ماہنامہ گل بوٹے" کے مدیر کون ہیں ؟",
+        "question": "ماہنامہ گل بوٹے کے مدیر کون ہیں ؟",
         "optionList": [
           "میرحسن",
           "جمال ناصر",
@@ -234,7 +234,7 @@ export class QuestionCollection {
         "question": "آدم کے بیٹے قابیل نے کس پرندے سے مردہ دفن کرنے کا طریقہ سیکھا تھا؟",
         "optionList": [
           "طوطا",
-          "کوا", 
+          "کوا",
           "مینا",
           "ھدھد"
         ],
@@ -390,7 +390,7 @@ export class QuestionCollection {
           "رامانجن",
           "  آریہ بھٹ",
           "اقلیدس",
-         " نیوٹن"
+          " نیوٹن"
         ],
         "answer": 2
       },

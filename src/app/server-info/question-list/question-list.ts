@@ -10,14 +10,35 @@ export class QuestionList {
     this.questionList.forEach(eachQuestion => this.randomizeOptions(eachQuestion));
   }
 
-  randomizeOptions(currentQuestion: IQuestion): IQuestion {
-    let swapIndex = Math.floor(Math.random() * 4); //number between 0 to 3
-    let initial = currentQuestion.optionList[swapIndex];
-    currentQuestion.optionList[swapIndex] = currentQuestion.optionList[0];
-    currentQuestion.optionList[0] = initial;
-    currentQuestion.answer = swapIndex + 1;
+  getRandomOrder(): number[] {
+    const numbers: number[] = [0, 1, 2, 3];
+    const randomOrder: number[] = [];
 
-    return currentQuestion;
+    while (numbers.length > 0) {
+      const randomIndex = Math.floor(Math.random() * numbers.length);
+      const randomNumber = numbers.splice(randomIndex, 1)[0];
+      randomOrder.push(randomNumber);
+    }
+
+    return randomOrder;
+  }
+
+  randomizeOptions(currentQuestion: IQuestion): IQuestion {
+    let orderIndexArray = this.getRandomOrder();
+
+    let returnQuestion: IQuestion = currentQuestion;
+    for (let i = 0; i < orderIndexArray.length; ++i) {
+      returnQuestion.optionList[i] = currentQuestion.optionList[orderIndexArray[i]]
+    }
+
+    for (let i = 0; i < orderIndexArray.length; ++i) {
+      if (currentQuestion.answer == (orderIndexArray[i] + 1)) {
+        returnQuestion.answer = i + 1;
+        break;
+      }
+    }
+
+    return returnQuestion;
   }
 
   getList(inCount: number): IQuestion[] {
