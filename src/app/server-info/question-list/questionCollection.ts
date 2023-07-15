@@ -220,7 +220,7 @@ export class QuestionCollection {
       },
       {
         "Id": 20,
-        "question": "تقرآن مجید میں کون سی سورہ ایک خاتون کے نام پر ہے؟ ",
+        "question": "قرآن مجید میں کون سی سورہ ایک خاتون کے نام پر ہے؟",
         "optionList": [
           "سورہ مریم",
           "سورہ عائشہ",
@@ -396,7 +396,7 @@ export class QuestionCollection {
       },
       {
         "Id": 36,
-        "question": "قومی یوم ریاضی تب منایا جاتا ہے ؟",
+        "question": "قومی یوم ریاضی کب منایا جاتا ہے؟",
         "optionList": [
           "22 دسمبر",
           "23 دسمبر",
@@ -462,7 +462,7 @@ export class QuestionCollection {
       },
       {
         "Id": 42,
-        "question": "کر ے کتنے کنارے یار اس ہوتے ہیں ؟",
+        "question": "دائرے میں کتنے کونے ہیں؟",
         "optionList": [
           "1",
           "0",
@@ -649,7 +649,7 @@ export class QuestionCollection {
       },
       {
         "Id": 59,
-        "question": "سوال ایک عام انسان کا بلڈ پریشر عموما کنار بہتا ہے؟",
+        "question": "ایک عام انسان کا بلڈ پریشر عموما کنار بہتا ہے؟",
         "optionList": [
           "120/80",
           "90/60",
