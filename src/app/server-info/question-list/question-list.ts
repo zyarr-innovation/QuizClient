@@ -26,19 +26,20 @@ export class QuestionList {
   randomizeOptions(currentQuestion: IQuestion): IQuestion {
     let orderIndexArray = this.getRandomOrder();
 
-    let returnQuestion: IQuestion = currentQuestion;
     for (let i = 0; i < orderIndexArray.length; ++i) {
-      returnQuestion.optionList[i] = currentQuestion.optionList[orderIndexArray[i]]
+      let temp = currentQuestion.optionList[i];
+      currentQuestion.optionList[i] = currentQuestion.optionList[orderIndexArray[i]];
+      currentQuestion.optionList[orderIndexArray[i]] = temp;
     }
 
     for (let i = 0; i < orderIndexArray.length; ++i) {
       if (currentQuestion.answer == (orderIndexArray[i] + 1)) {
-        returnQuestion.answer = i + 1;
+        currentQuestion.answer = i + 1;
         break;
       }
     }
 
-    return returnQuestion;
+    return currentQuestion;
   }
 
   getList(inCount: number): IQuestion[] {
