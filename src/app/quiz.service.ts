@@ -4,6 +4,7 @@ import { IQuestion, QuestionCollection } from './data/questionCollection';
 import { EMPTY, from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+const NUMBER_OF_QUESTIONS = 50;
 @Injectable({
   providedIn: 'root',
 })
@@ -61,7 +62,10 @@ export class QuizService {
   getQuestions(): Observable<IQuestion[]> {
     return this.questionCollection.get().pipe(
       map((questions) => {
-        const randomQuestions = this.getRandomQuestions(questions, 30);
+        const randomQuestions = this.getRandomQuestions(
+          questions,
+          NUMBER_OF_QUESTIONS
+        );
         return randomQuestions.map((question) =>
           this.randomizeOptions(question)
         );
