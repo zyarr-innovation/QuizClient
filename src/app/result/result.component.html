@@ -9,19 +9,35 @@
 
     <mat-card-content>
       <div class="result-details">
-        <img src="../../assets/img/trophy.png" alt="Trophy" class="trophy-img">
+        <img
+          src="../../assets/img/trophy.png"
+          alt="Trophy"
+          class="trophy-img"
+        />
         <div class="participant-details">
-          <h4>{{quizService.getParticipantName()}}</h4>
-          <h3>{{quizService.correctAnswerCount}} / {{quizService.qns.length}}</h3>
-          <p>Time Elapsed: {{quizService.displayTimeElapsed()}}</p>
+          <h4>{{ quizService.getParticipantName() }}</h4>
+          <h3>
+            {{ quizService.correctAnswerCount }} / {{ quizService.qns.length }}
+          </h3>
+          <p>Time Elapsed: {{ quizService.displayTimeElapsed() }}</p>
         </div>
       </div>
 
       <div class="actions">
-        <button mat-raised-button color="primary" (click)="OnSubmit()" [disabled]="isResultSubmitted">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="OnSubmit()"
+          [disabled]="isResultSubmitted"
+        >
           Submit
         </button>
-        <button mat-icon-button color="warn" (click)="restart()" aria-label="Restart">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="restart()"
+          aria-label="Restart"
+        >
           <mat-icon>replay</mat-icon>
         </button>
       </div>
@@ -38,21 +54,32 @@
       <ng-container *ngFor="let qn of quizService.qns; let i = index">
         <mat-card class="question-card">
           <mat-card-content>
-            <h4>Question {{i + 1}}</h4>
-            <p>{{qn.question}}</p>
+            <h4>Question {{ i + 1 }}</h4>
+            <p>{{ qn.question }}</p>
             <div *ngIf="qn.ImageName != null">
-              <img [src]="quizService.rootUrl + '/Images/' + qn.ImageName" alt="Question Image" class="question-img">
+              <img
+                [src]="quizService.rootUrl + '/Images/' + qn.ImageName"
+                alt="Question Image"
+                class="question-img"
+              />
             </div>
           </mat-card-content>
           <mat-card-actions>
             <ul>
-              <li *ngFor="let option of qn.optionList; let j = index" class="option-item">
-                {{option}}
-                <span *ngIf="qn.answer === (j + 1)">
-                  <mat-icon style="color: green; margin-left: 3px;">check_circle</mat-icon>
+              <li
+                *ngFor="let option of qn.options; let j = index"
+                class="option-item"
+              >
+                {{ option }}
+                <span *ngIf="qn.answer === j + 1">
+                  <mat-icon style="color: green; margin-left: 3px"
+                    >check_circle</mat-icon
+                  >
                 </span>
-                <span *ngIf="qn.choice === (j + 1) && qn.answer !== (j + 1)">
-                  <mat-icon style="color: red; margin-left: 3px;">cancel</mat-icon>
+                <span *ngIf="qn.choice === j + 1 && qn.answer !== j + 1">
+                  <mat-icon style="color: red; margin-left: 3px"
+                    >cancel</mat-icon
+                  >
                 </span>
               </li>
             </ul>
