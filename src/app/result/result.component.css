@@ -1,0 +1,56 @@
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  mat-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+  .result-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .trophy-img {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .participant-details {
+    text-align: center;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .questions-card {
+    width: 100%;
+  }
+  
+  .question-card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .question-img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 10px 0;
+  }
+  
+  .option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  

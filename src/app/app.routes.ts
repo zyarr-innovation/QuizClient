@@ -1,14 +1,12 @@
-import { Routes } from '@angular/router'
+import { Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { ResultComponent } from './result/result.component';
 import { AuthGuard } from './auth/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
 
-export const appRoutes: Routes = [
+export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
     { path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/register', pathMatch: 'full' }
 ];

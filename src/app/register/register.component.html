@@ -1,37 +1,34 @@
-<div class="row">
-  <div class="card">
-    <div class="col s12">
-      <div class="col s6">
+<div class="register-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
         <h2>Quiz Registration</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="logo-container">
+        <img src="/assets/img/logo.png" alt="Logo" class="logo">
       </div>
-      <div class="col s6">
-        <img src="assets/img/logo.png" style="width:50%;height:50%;" class="offset-s3">
-      </div>
-      <div class="card-content">
-        <form #registerForm="ngForm" (ngSubmit)="OnSubmit(Name.value)">
-          <div class="row">
-            <div class="input-field col s10">
-              <i class="material-icons prefix">account_circle</i>
-              <input type="text" name="Name" #Name ngModel required>
-              <label>Name</label>
-            </div>
-          </div>
-          <!-- 
-              <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">mail_outline</i>
-                <input type="text" name="Email" #Email ngModel required [pattern]="emailPattern">
-                <label>Email</label>
-              </div>
-            </div> 
-            -->
-          <div class="row">
-            <div class="input-field col s12">
-              <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">Start</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+      <form #registerForm="ngForm" (ngSubmit)="OnSubmit(Name.value)">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput type="text" name="Name" #Name ngModel required>
+        </mat-form-field>
+
+        <!-- Uncomment for email field if needed -->
+        <!-- 
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" name="Email" #Email ngModel required [pattern]="emailPattern">
+        </mat-form-field>
+        -->
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+            Start
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

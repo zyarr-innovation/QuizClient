@@ -1,59 +1,64 @@
 <app-navbar></app-navbar>
-<div class="row">
-  <div class="col s12">
+<div class="result-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Completed!</h2>
+      </mat-card-title>
+    </mat-card-header>
 
-    <!-- Completed answer details -->
-    <h2 class="header">Completed!</h2>
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="../../assets/img/trophy.png" style="width: 250px;height : 250px;">
-      </div>
-
-      <div class="card-stacked">
-        <div class="card-content">
+    <mat-card-content>
+      <div class="result-details">
+        <img src="../../assets/img/trophy.png" alt="Trophy" class="trophy-img">
+        <div class="participant-details">
           <h4>{{quizService.getParticipantName()}}</h4>
-          <h3>{{quizService.correctAnswerCount}}/{{quizService.qns.length}}</h3>
-          <span>Time Elapsed : {{quizService.displayTimeElapsed()}}</span>
-        </div>
-        <div class="card-action">
-          <button class="btn" (click)="OnSubmit()" [disabled]="isResultSubmitted" style="margin:5%;">Submit</button>
-          <button class="btn" (click)="OnDashboard()" [disabled]="!isResultSubmitted">Dashboard</button>
+          <h3>{{quizService.correctAnswerCount}} / {{quizService.qns.length}}</h3>
+          <p>Time Elapsed: {{quizService.displayTimeElapsed()}}</p>
         </div>
       </div>
 
-      <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="restart()">
-        <i class="material-icons">replay</i>
-      </a>
-    </div>
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="OnSubmit()" [disabled]="isResultSubmitted">
+          Submit
+        </button>
+        <button mat-icon-button color="warn" (click)="restart()" aria-label="Restart">
+          <mat-icon>replay</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-    <!-- Qn with correct answer -->
-    <h3>Questions with correct answer</h3>
-    <ng-container *ngFor="let qn of quizService.qns;let i=index">
-
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">{{i+1}}</span>
-          <p>{{qn.question}}</p>
-          <div *ngIf="qn.ImageName!=null">
-            <img class="center" [src]="quizService.rootUrl+'/Images/'+qn.ImageName" style="width:350px;height:200px">
-          </div>
-        </div>
-
-        <div class="card-action">
-          <ul class="collection">
-            <ng-container *ngFor="let option of qn.optionList; let j = index">
-              <li *ngIf="option != null" class="collection-item">
+  <mat-card class="questions-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Questions with Correct Answers</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngFor="let qn of quizService.qns; let i = index">
+        <mat-card class="question-card">
+          <mat-card-content>
+            <h4>Question {{i + 1}}</h4>
+            <p>{{qn.question}}</p>
+            <div *ngIf="qn.ImageName != null">
+              <img [src]="quizService.rootUrl + '/Images/' + qn.ImageName" alt="Question Image" class="question-img">
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <ul>
+              <li *ngFor="let option of qn.optionList; let j = index" class="option-item">
                 {{option}}
-                <span class="badge" *ngIf="qn.answer==(j + 1)">
-                  <i class="material-icons green-text">check_circle</i>
+                <span *ngIf="qn.answer === (j + 1)">
+                  <mat-icon style="color: green; margin-left: 3px;">check_circle</mat-icon>
                 </span>
-                <span class="badge red-text" *ngIf="qn.choice==(j + 1) && qn.answer!=(j + 1)">Incorrect</span>
+                <span *ngIf="qn.choice === (j + 1) && qn.answer !== (j + 1)">
+                  <mat-icon style="color: red; margin-left: 3px;">cancel</mat-icon>
+                </span>
               </li>
-            </ng-container>
-          </ul>
-        </div>
-      </div>
-
-    </ng-container>
-  </div>
+            </ul>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
 </div>

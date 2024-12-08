@@ -1,0 +1,23 @@
+/* Space between the title and button */
+.toolbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #607d8b; /* Custom blue-grey color */
+    color: black;
+  }
+  
+  button[mat-icon-button] {
+    width: 48px;
+    height: 48px;
+  }
+  

@@ -1,6 +1,33 @@
-class card {
-    max-width: 60%;
-    margin-left: 10%;
-    margin-right: 10%;
-    border: 3px solid black;
-}
+/* Center the card container */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height for vertical centering */
+    background-color: #f5f5f5; /* Optional: Background color for the page */
+  }
+  
+  /* Style the logo container */
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 250px;
+    height: 250px;
+  }
+  
+  /* Full-width input fields */
+  .full-width {
+    width: 100%;
+  }
+  
+  /* Center the button */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  

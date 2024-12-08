@@ -1,13 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { QuizService } from "../shared/quiz.service";
-import { Router } from "@angular/router";
+import { Component } from '@angular/core';
+import { QuizService } from '../quiz.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: "app-result",
-  templateUrl: "./result.component.html",
-  styleUrls: ["./result.component.css"]
+  selector: 'app-result',
+  standalone: true,
+  imports: [CommonModule, NavbarComponent, MatCardModule, MatButtonModule, MatInputModule, MatIconModule],
+  templateUrl: './result.component.html',
+  styleUrl: './result.component.css'
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent {
   public isResultSubmitted: Boolean;
 
   constructor(public quizService: QuizService, private router: Router) {
@@ -16,14 +24,14 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     if (
-      parseInt(localStorage.getItem("qnProgress")) ==
+      parseInt(localStorage.getItem("qnProgress")!) ==
       this.quizService.qns.length
     ) {
-      this.quizService.seconds = parseInt(localStorage.getItem("seconds"));
+      this.quizService.seconds = parseInt(localStorage.getItem("seconds")!);
       this.quizService.qnProgress = parseInt(
-        localStorage.getItem("qnProgress")
+        localStorage.getItem("qnProgress")!
       );
-      this.quizService.qns = JSON.parse(localStorage.getItem("qns"));
+      this.quizService.qns = JSON.parse(localStorage.getItem("qns")!);
 
       this.quizService.correctAnswerCount = 0;
       this.quizService.qns.forEach(eachQuestion => {
@@ -54,10 +62,6 @@ export class ResultComponent implements OnInit {
     });
   }
 
-  OnDashboard() {
-    this.router.navigate(["/dashboard"]);
-  }
-
   restart() {
     this.isResultSubmitted = false;
     localStorage.setItem("qnProgress", "0");
@@ -66,3 +70,4 @@ export class ResultComponent implements OnInit {
     this.router.navigate(["/quiz"]);
   }
 }
+

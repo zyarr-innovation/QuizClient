@@ -1,4 +1,52 @@
-.quiz-font {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 20px;
-}
+mat-card {
+    margin-bottom: 20px;
+  }
+  
+  .mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .mat-card-content {
+    font-size: 1rem;
+    padding: 15px;
+  }
+  
+  .collection-item {
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+/* Ensure the container spans the full width */
+.answer {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure the list spans the card's full width */
+  }
+  
+  /* Ensure text visibility for hover and selected states */
+.answer-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #000; /* Default text color */
+    box-sizing: border-box;
+  }
+  
+  .answer-item:hover {
+    background-color: #f0f0f0;
+    color: #000; /* Text visible on hover */
+  }
+  
+  .answer-item.selected {
+    background-color: #26a69a !important;
+    color: #ffffff !important; /* Ensure text is visible on selection */
+  }
+  
