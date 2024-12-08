@@ -39,7 +39,7 @@ displayTimeElapsed() {
 
 getParticipantName() {
   var participant = JSON.parse(localStorage.getItem("participant")!);
-  return participant.Name;
+  return participant.name;
 }
 
 insertParticipant(name: string, email: string) {
