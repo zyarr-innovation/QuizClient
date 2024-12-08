@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IQuestion, QuestionCollection } from './data/questionCollection';
 import { EMPTY, from, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -49,40 +50,57 @@ export class QuizService {
       email: email,
     };
     localStorage.setItem('participant', JSON.stringify(body));
-    //return this.http.post(this.rootUrl + "/registerParticipant", body);
     return of(body);
   }
 
   getParticipantList() {
     return from([localStorage.getItem('participant')]);
-    //return this.http.get(this.rootUrl + "/participantList");
   }
 
   //---------------- Http Methods---------------
   getQuestions(): Observable<IQuestion[]> {
-    return new Observable<IQuestion[]>((observer) => {
-      this.questionCollection.get().subscribe({
-        next: (questions) => {
-          observer.next(questions);
-          observer.complete();
-        },
-        error: (err) => {
-          observer.error(err);
-        },
-      });
-    });
+    return this.questionCollection.get().pipe(
+      map((questions) => {
+        const randomQuestions = this.getRandomQuestions(questions, 30);
+        return randomQuestions.map((question) =>
+          this.randomizeOptions(question)
+        );
+      })
+    );
   }
 
-  // getAnswers() {
-  //   var body = this.qns.map(x => x.id);
-  //   return this.http.post(this.rootUrl + "/answers", body);
-  // }
+  private getRandomQuestions(
+    questions: IQuestion[],
+    count: number
+  ): IQuestion[] {
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    // Return the first `count` questions
+    return questions.slice(0, count);
+  }
 
+  private randomizeOptions(question: IQuestion): IQuestion {
+    const options = [...question.options];
+    const correctAnswer = options[question.answer - 1]; // Get the correct answer using 1-based index
+    const shuffledOptions = options
+      .map((option) => ({ option, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ option }) => option);
+    const newAnswerIndex = shuffledOptions.indexOf(correctAnswer) + 1; // Adjust back to 1-based index
+
+    return {
+      ...question,
+      options: shuffledOptions,
+      answer: newAnswerIndex,
+    };
+  }
   submitScore() {
     var body = JSON.parse(localStorage.getItem('participant')!);
     body.Score = this.correctAnswerCount;
     body.TimeSpent = this.seconds;
-    //return this.http.post(this.rootUrl + "/updateScore", body);
     return EMPTY;
   }
 }

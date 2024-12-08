@@ -437,7 +437,7 @@ A) 20%
 B) 30%
 C) 40%
 D) 50%
-answer: 3%
+answer: 3
 
 Q64: What cellular organelle is abundant in muscle tissue and produces energy for contractions?
 A) Nucleus
