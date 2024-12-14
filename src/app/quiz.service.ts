@@ -105,6 +105,7 @@ export class QuizService {
     var body = JSON.parse(localStorage.getItem('participant')!);
     body.Score = this.correctAnswerCount;
     body.TimeSpent = this.seconds;
-    return EMPTY;
+    return of(body);
   }
+ 
 }
