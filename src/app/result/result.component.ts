@@ -76,7 +76,7 @@ export class ResultComponent {
 
   sendEmail(encryptedData: string) {
     // Define the mailto link with pre-filled email data
-    const email = "zy-innovator@gmail.com";
+    const email = "zy.innovator@gmail.com";
     const subject = "Quiz Results - My Body Gift of God";
     const body = `Hello,\n\nHere are the encrypted quiz results:\n\n${encodeURIComponent(encryptedData)}`;
 
