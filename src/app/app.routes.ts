@@ -9,7 +9,8 @@ export const routes: Routes = [
     // { path: 'register', component: RegisterComponent },
     { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
     { path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
-    { path: 'revise', component: QuestionDisplayComponent }, // Route for English
+    { path: 'revise', component: QuestionDisplayComponent }, 
+    { path: 'review', component: QuestionDisplayComponent }, 
     { path: 'en', component: RegisterComponent }, // Route for English
     { path: 'ur', component: RegisterComponent }, // Route for Urdu
     { path: '', redirectTo: '/en', pathMatch: 'full' }

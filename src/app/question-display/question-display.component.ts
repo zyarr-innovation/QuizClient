@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { QuizService } from '../quiz.service';
 import { IQuestion } from '../data/questionCollection';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,13 +16,42 @@ import { IQuestion } from '../data/questionCollection';
 export class QuestionDisplayComponent {
   questionsEnglish!: IQuestion[];
   questionsUrdu!: IQuestion[];
+  baseQuestions: IQuestion[];
 
-  constructor(private quizService: QuizService) {}
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private quizService: QuizService) {
+      this.questionsEnglish = [];
+      this.questionsUrdu = [];
+      this.baseQuestions = [];
+    }
 
   ngOnInit() {
-    this.quizService.getAllQuestions('en').subscribe(data => this.questionsEnglish = data);
-    this.quizService.getAllQuestions('ur').subscribe(data => this.questionsUrdu = data);
+    this.activatedRoute.url.subscribe((urlSegments) => {
+      const lastPath = urlSegments[0]?.path; // 'revise' or 'review'
+      if (lastPath === 'review') {
+        this.quizService.getAllQuestions('en').subscribe(data => this.questionsEnglish = data);
+        this.quizService.getAllQuestions('ur').subscribe(data => this.questionsUrdu = data);
+        this.baseQuestions = this.questionsEnglish;
+      } else {
+        this.questionsEnglish = [];
+        this.questionsUrdu = [];
+        const selectedLanguage = this.quizService.getLanguage();
+        if (selectedLanguage === 'en') {
+          this.quizService.getAllQuestions('en').subscribe(data => {
+            this.questionsEnglish = data;
+            this.baseQuestions = this.questionsEnglish;
+          });
+        } else if (selectedLanguage === 'ur') {
+          this.quizService.getAllQuestions('ur').subscribe(data => {
+            this.questionsUrdu = data;
+            this.baseQuestions = this.questionsUrdu;
+          });
+        }
+      }
+    });
   }
+    
   
   getCorrectAnswerClass(indexQuestion: number, currentIndex: number, language: string): string {
     const question = language === 'english' ? this.questionsEnglish[indexQuestion] : this.questionsUrdu[indexQuestion];

@@ -36,6 +36,10 @@ export class QuizService {
     this.language = language;
   }
 
+  getLanguage(){
+    return this.language;
+  }
+
   displayTimeElapsed() {
     return (
       Math.floor(this.seconds / 3600) +
