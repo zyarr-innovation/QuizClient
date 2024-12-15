@@ -6,11 +6,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, MatCardModule, MatButtonModule, MatProgressBarModule],
+  imports: [CommonModule, NavbarComponent, MatCardModule, MatListModule, MatButtonModule, MatProgressBarModule],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css'
 })

@@ -50,11 +50,11 @@
         <h3>Questions with Correct Answers</h3>
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content [ngClass]="{'urdu-text': quizService.getLanguage() === 'ur'}">
       <ng-container *ngFor="let qn of quizService.qns; let i = index">
         <mat-card class="question-card">
           <mat-card-content>
-            <h4>Question {{ i + 1 }}</h4>
+            <h4>{{ i + 1 }}</h4>
             <p>{{ qn.question }}</p>
             <div *ngIf="qn.ImageName != null">
               <img
@@ -69,6 +69,7 @@
               <li
                 *ngFor="let option of qn.options; let j = index"
                 class="option-item"
+                [ngClass]="{'urdu-text': quizService.getLanguage() === 'ur'}"
               >
                 {{ option }}
                 <span *ngIf="qn.answer === j + 1">

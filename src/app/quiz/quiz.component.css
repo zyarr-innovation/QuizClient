@@ -3,55 +3,50 @@
 }
 
 mat-card {
-    margin-bottom: 20px;
-  }
-  
-  .mat-card-title {
-    font-size: 1.7rem;
-    font-weight: bold;
-  }
-  
-  .mat-card-content {
-    font-size: 1rem;
-    padding: 15px;
-  }
-  
-  .collection-item {
-    cursor: pointer;
-    padding: 10px;
-  }
-  
-/* Ensure the container spans the full width */
+  margin-bottom: 20px;
+}
+
+.mat-card-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.mat-card-content {
+  font-size: 1rem;
+  padding: 15px;
+}
+
 .answer {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    width: 100%; /* Ensure the list spans the card's full width */
-  }
-  
-  /* Ensure text visibility for hover and selected states */
-.answer-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0;
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #000; /* Default text color */
-    box-sizing: border-box;
-    font-size: 1.3rem;
-  }
-  
-  .answer-item:hover {
-    background-color: #f0f0f0;
-    color: #000; /* Text visible on hover */
-  }
-  
-  .answer-item.selected {
-    background-color: #26a69a !important;
-    color: #ffffff !important; /* Ensure text is visible on selection */
-  }
-  
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+mat-list-item {
+  width: 100%; /* Ensures the list item takes up the full width */
+  padding: 15px;
+  margin: 5px 0;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #000;
+  box-sizing: border-box;
+  font-size: 1.3rem;
+}
+
+mat-list-item:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+mat-list-item.selected {
+  background-color: #26a69a !important;
+  color: #ffffff !important;
+}
+
+.urdu-options {
+  --mdc-list-list-item-label-text-font: 'Noto Nastaliq Urdu', sans-serif !important;
+  direction: rtl;
+  unicode-bidi: embed;
+}

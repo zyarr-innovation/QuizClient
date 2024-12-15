@@ -10,19 +10,21 @@
             <p>{{ questionsEnglish[i].question }}</p>
             <mat-list>
               <mat-list-item *ngFor="let option of questionsEnglish[i].options; let k = index" 
-                             [ngClass]="getCorrectAnswerClass(i, k, 'english')">
-                {{k + 1}}. {{option}}
+                  [ngClass]="getCorrectAnswerClass(i, k, 'english')">
+                {{option}}
               </mat-list-item>
             </mat-list>
           </div>
           <!-- Urdu Column -->
-          <div class="question-column" *ngIf="questionsUrdu.length > 0">
+          <div class="question-column" *ngIf="questionsUrdu.length > 0"
+            [ngClass]="{'urdu-text': quizService.getLanguage() === 'ur'}"
+            >
             <p>{{ questionsUrdu[i].question }}</p>
-            <mat-list>
+            <mat-list >
               <mat-list-item *ngFor="let option of questionsUrdu[i].options; let j = index" 
                 class="urdu-options"
                 [ngClass]="getCorrectAnswerClass(i, j, 'urdu')">
-                {{j + 1}}. {{option}}
+                {{option}}
               </mat-list-item>
             </mat-list>
           </div>

@@ -4,7 +4,6 @@
   *ngIf="quizService.qns && quizService.qnProgress != quizService.qns.length"
 >
   <div class="col s12">
-    <!-- Card displaying question and options -->
     <mat-card class="blue-grey darken-1">
       <mat-card-header>
         <span>Time Elapsed: {{ quizService.displayTimeElapsed() }}</span>
@@ -16,45 +15,22 @@
         </mat-progress-bar>
       </mat-card-header>
 
-      <mat-card-content class="white-text">
-        <mat-card-title
-          >{{ quizService.qnProgress + 1 }} Question:
-          {{ quizService.qns[quizService.qnProgress].question }}
-        </mat-card-title>
-
-        <!-- Image display if available -->
-        <div *ngIf="quizService.qns[quizService.qnProgress].ImageName != null">
-          <img
-            class="center"
-            [src]="
-              quizService.rootUrl +
-              '/Images/' +
-              quizService.qns[quizService.qnProgress].ImageName
-            "
-            style="width: 350px; height: 200px"
-          />
-        </div>
+       <mat-card-content>
+          <div [ngClass]="{'urdu-text': quizService.getLanguage() === 'ur'}">
+            <p>
+              {{ quizService.qnProgress + 1 }} :
+              {{ quizService.qns[quizService.qnProgress].question }}
+            </p>
+            <mat-list>
+              <mat-list-item *ngFor="let option of quizService.qns[quizService.qnProgress].options; let i = index" 
+                  class="urdu-options answer-item"
+                  (click)="Answer(i + 1)"
+                >
+                  {{ option }}
+                </mat-list-item>
+            </mat-list>
+          </div> 
       </mat-card-content>
-
-      <mat-card-actions>
-        <!-- Displaying options as list items -->
-        <ul class="answer">
-          <ng-container
-            *ngFor="
-              let option of quizService.qns[quizService.qnProgress].options;
-              let i = index
-            "
-          >
-            <li
-              *ngIf="option != null"
-              class="answer-item"
-              (click)="Answer(i + 1)"
-            >
-              {{ option }}
-            </li>
-          </ng-container>
-        </ul>
-      </mat-card-actions>
     </mat-card>
   </div>
 </div>

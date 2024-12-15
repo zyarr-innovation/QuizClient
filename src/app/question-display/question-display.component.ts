@@ -21,7 +21,7 @@ export class QuestionDisplayComponent {
 
   constructor(
     private activatedRoute: ActivatedRoute, 
-    private quizService: QuizService) {
+    public quizService: QuizService) {
       this.questionsEnglish = [];
       this.questionsUrdu = [];
       this.baseQuestions = [];
