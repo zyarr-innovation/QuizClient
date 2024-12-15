@@ -1,0 +1,35 @@
+<div class="question-container">
+    <mat-card *ngFor="let question of questionsUrdu; let i = index" class="question-card">
+      <mat-card-header>
+        <mat-card-title>Question {{ question.id }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="question-row">
+          <!-- English Column -->
+          <div class="question-column">
+            <p>{{ questionsEnglish[i].question }}</p>
+            <mat-list>
+              <mat-list-item *ngFor="let option of questionsEnglish[i].options; let k = index" 
+                             [ngClass]="getCorrectAnswerClass(i, k, 'english')">
+                {{k + 1}}. {{option}}
+              </mat-list-item>
+            </mat-list>
+          </div>
+
+          <!-- Urdu Column -->
+          <div class="question-column">
+            <p>{{ questionsUrdu[i].question }}</p>
+            <mat-list>
+              <mat-list-item *ngFor="let option of questionsUrdu[i].options; let j = index" 
+                class="urdu-options"
+                [ngClass]="getCorrectAnswerClass(i, j, 'urdu')">
+                {{j + 1}}. {{option}}
+              </mat-list-item>
+            </mat-list>
+          </div>
+    
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

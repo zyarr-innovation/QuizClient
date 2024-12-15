@@ -1,0 +1,50 @@
+.question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .question-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .question-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .question-column {
+    width: 48%;
+  }
+  
+  mat-card {
+    padding: 20px;
+  }
+  
+  h3, h4 {
+    margin-top: 10px;
+  }
+  
+  mat-list-item {
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  /* Highlight correct answer */
+  .correct-answer {
+    background-color: #d4edda; /* Light green */
+  }
+  
+  mat-list-item:hover {
+    background-color: #f1f1f1; /* Hover effect for better UX */
+  }
+
+  .question-column .urdu-options {
+    --mdc-list-list-item-label-text-font: 'Noto Nastaliq Urdu', sans-serif !important;
+  }
+  

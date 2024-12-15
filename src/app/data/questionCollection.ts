@@ -12,7 +12,11 @@ export interface IQuestion {
 @Injectable()
 export class QuestionCollection {
   constructor(private http: HttpClient) {}
-  get(): Observable<IQuestion[]> {
-    return this.http.get<IQuestion[]>('assets/mybody-en.json');
+  get(language: string): Observable<IQuestion[]> {
+    let content =  this.http.get<IQuestion[]>('assets/mybody-en.json');
+    if ('ur' == language) {
+      content = this.http.get<IQuestion[]>('assets/mybody-ur.json');
+    }
+    return content;
   }
 }
