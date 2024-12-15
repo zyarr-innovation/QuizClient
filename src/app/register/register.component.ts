@@ -42,4 +42,8 @@ export class RegisterComponent {
       }
     );
   }
+
+  navigateToReview(): void {
+    this.route.navigate(['/revise']);  // Navigate to the /review route
+  }
 }

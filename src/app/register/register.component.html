@@ -27,6 +27,10 @@
           <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
             Start
           </button>
+          <button mat-raised-button color="primary"
+          (click)="navigateToReview()">
+            Revise
+          </button>
         </div>
       </form>
     </mat-card-content>
