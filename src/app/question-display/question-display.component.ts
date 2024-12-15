@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { QuizService } from '../quiz.service';
 import { IQuestion } from '../data/questionCollection';
 import { ActivatedRoute } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -30,9 +31,15 @@ export class QuestionDisplayComponent {
     this.activatedRoute.url.subscribe((urlSegments) => {
       const lastPath = urlSegments[0]?.path; // 'revise' or 'review'
       if (lastPath === 'review') {
-        this.quizService.getAllQuestions('en').subscribe(data => this.questionsEnglish = data);
-        this.quizService.getAllQuestions('ur').subscribe(data => this.questionsUrdu = data);
-        this.baseQuestions = this.questionsEnglish;
+        forkJoin({
+          englishQuestions: this.quizService.getAllQuestions('en'),
+          urduQuestions: this.quizService.getAllQuestions('ur')
+        }).subscribe(({ englishQuestions, urduQuestions }) => {
+          this.questionsEnglish = englishQuestions;
+          this.questionsUrdu = urduQuestions;
+          this.baseQuestions = englishQuestions; 
+        });
+        
       } else {
         this.questionsEnglish = [];
         this.questionsUrdu = [];
