@@ -23,7 +23,8 @@
             </p>
             <mat-list>
               <mat-list-item *ngFor="let option of quizService.qns[quizService.qnProgress].options; let i = index" 
-                  class="urdu-options answer-item"
+                  [ngClass]="{'urdu-options': quizService.getLanguage() === 'ur'}"
+                  class=" answer-item"
                   (click)="Answer(i + 1)"
                 >
                   {{ option }}
