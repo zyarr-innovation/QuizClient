@@ -23,8 +23,8 @@ mat-card {
 }
 
 mat-list-item {
-  width: 100%; /* Ensures the list item takes up the full width */
-  padding: 15px;
+  width: 100%;
+  padding: 10px;
   margin: 5px 0;
   cursor: pointer;
   background-color: white;
@@ -33,6 +33,16 @@ mat-list-item {
   color: #000;
   box-sizing: border-box;
   font-size: 1.3rem;
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  text-overflow: initial !important;
+  white-space: break-spaces !important;
+}
+
+::ng-deep .mdc-list-item.mdc-list-item--with-one-line {
+  height: auto !important;
+  padding: 2px !important;
 }
 
 mat-list-item:hover {

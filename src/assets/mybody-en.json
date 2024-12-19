@@ -2741,26 +2741,18 @@
             "Thymus",
             "Spleen",
             "Bone Marrow",
-            "Lymph Nodes",
-            "To filter blood and store white blood cells",
-            "To mature T-cells",
-            "To produce antibodies",
-            "To produce red blood cells"
+            "Lymph Nodes"
         ],
         "answer": 2
     },
     {
         "id": 250,
-        "question": "Which of the following is responsible for producing all blood cells, including immune cells?",
-        "options": [
-            "Thymus",
-            "Spleen",
-            "Bone Marrow",
-            "Lymph Nodes",
+        "question": "What is the primary function of the spleen in the immune system??",
+       "options": [
+            "To produce B-cells",
             "To filter blood and store white blood cells",
-            "To mature T-cells",
-            "To produce antibodies",
-            "To produce red blood cells"
+            "To produce red blood cells",
+            "To mature T-cells"
         ],
         "answer": 2
     },
