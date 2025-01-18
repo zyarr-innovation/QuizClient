@@ -115,6 +115,7 @@ export class QuizService {
     var body = JSON.parse(localStorage.getItem('participant')!);
     body.Score = this.correctAnswerCount;
     body.TimeSpent = this.seconds;
+    body.TargetData = this.targetData;
     return of(body);
   }
 
