@@ -122,4 +122,8 @@ export class QuizService {
   getAllQuestions(targetData: string): Observable<IQuestion[]> {
     return this.questionCollection.get(targetData);
   }
+
+  getSubject() {
+    return 'My Body - The Gift of God';
+  }
 }

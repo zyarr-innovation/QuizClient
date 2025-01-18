@@ -7,13 +7,13 @@ import { QuestionDisplayComponent } from './question-display/question-display.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
-    // { path: 'register', component: RegisterComponent },
-    { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
-    { path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
-    { path: 'revise', component: QuestionDisplayComponent }, 
-    { path: 'review', component: QuestionDisplayComponent }, 
-    { path: 'dashboard', component: DashboardComponent }, 
-    { path: 'en', component: RegisterComponent }, // Route for English
-    { path: 'ur', component: RegisterComponent }, // Route for Urdu
-    { path: '', redirectTo: '/en', pathMatch: 'full' }
+  // { path: 'register', component: RegisterComponent },
+  { path: 'quiz', component: QuizComponent, canActivate: [AuthGuard] },
+  { path: 'result', component: ResultComponent, canActivate: [AuthGuard] },
+  { path: 'revise', component: QuestionDisplayComponent },
+  { path: 'review', component: QuestionDisplayComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'en', component: RegisterComponent }, // Route for English
+  { path: 'ur', component: RegisterComponent }, // Route for Urdu
+  { path: '', redirectTo: '/en', pathMatch: 'full' },
 ];

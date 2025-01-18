@@ -12,9 +12,16 @@ import { EncryptionService } from '../encryption.service';
 @Component({
   selector: 'app-result',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, MatCardModule, MatButtonModule, MatInputModule, MatIconModule],
+  imports: [
+    CommonModule,
+    NavbarComponent,
+    MatCardModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+  ],
   templateUrl: './result.component.html',
-  styleUrl: './result.component.css'
+  styleUrl: './result.component.css',
 })
 export class ResultComponent {
   public isResultSubmitted: Boolean;
@@ -27,14 +34,14 @@ export class ResultComponent {
 
   ngOnInit() {
     if (
-      parseInt(localStorage.getItem("qnProgress")!) ==
+      parseInt(localStorage.getItem('qnProgress')!) ==
       this.quizService.qns.length
     ) {
-      this.quizService.seconds = parseInt(localStorage.getItem("seconds")!);
+      this.quizService.seconds = parseInt(localStorage.getItem('seconds')!);
       this.quizService.qnProgress = parseInt(
-        localStorage.getItem("qnProgress")!
+        localStorage.getItem('qnProgress')!
       );
-      this.quizService.qns = JSON.parse(localStorage.getItem("qns")!);
+      this.quizService.qns = JSON.parse(localStorage.getItem('qns')!);
 
       this.quizService.correctAnswerCount = 0;
       this.quizService.qns.forEach(eachQuestion => {
@@ -62,26 +69,30 @@ export class ResultComponent {
     this.quizService.submitScore().subscribe(async (data: any) => {
       //this.restart();
       this.isResultSubmitted = true;
-        try {
-          const encryptedData = await this.encryptionService.encryptResults(data);
-          console.log('Encrypted Data:', encryptedData);
-    
-          // Send the encrypted data via email or other methods
-          this.sendEmail(encryptedData);
-        } catch (error) {
-          console.error('Error encrypting data:', error);
-        }
+      try {
+        const encryptedData = await this.encryptionService.encryptResults(data);
+        console.log('Encrypted Data:', encryptedData);
+
+        // Send the encrypted data via email or other methods
+        this.sendEmail(encryptedData);
+      } catch (error) {
+        console.error('Error encrypting data:', error);
+      }
     });
   }
 
   sendEmail(encryptedData: string) {
     // Define the mailto link with pre-filled email data
-    const email = "zy.innovator@gmail.com";
-    const subject = "Quiz Results - My Body Gift of God";
-    const body = `Hello,\n\nHere are the encrypted quiz results:\n\n${encodeURIComponent(encryptedData)}`;
+    const email = 'zy.innovator@gmail.com';
+    const subject = 'Quiz Results - ' + this.quizService.getSubject();
+    const body = `Hello,\n\nHere are the encrypted quiz results:\n\n${encodeURIComponent(
+      encryptedData
+    )}`;
 
     // Create a mailto link and open it in the default email client
-    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
 
     // Open the default mail client (e.g., Gmail) with pre-filled fields
     window.location.href = mailtoLink;
@@ -89,10 +100,9 @@ export class ResultComponent {
 
   restart() {
     this.isResultSubmitted = false;
-    localStorage.setItem("qnProgress", "0");
-    localStorage.setItem("qns", "");
-    localStorage.setItem("seconds", "0");
-    this.router.navigate(["/quiz"]);
+    localStorage.setItem('qnProgress', '0');
+    localStorage.setItem('qns', '');
+    localStorage.setItem('seconds', '0');
+    this.router.navigate(['/quiz']);
   }
 }
-

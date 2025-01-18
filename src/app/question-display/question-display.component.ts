@@ -29,7 +29,7 @@ export class QuestionDisplayComponent {
 
   ngOnInit() {
     this.activatedRoute.url.subscribe((urlSegments) => {
-      const lastPath = urlSegments[0]?.path; // 'revise' or 'review'
+      const lastPath = urlSegments[0]?.path;
       if (lastPath === 'review') {
         forkJoin({
           englishQuestions: this.quizService.getAllQuestions('en'),
