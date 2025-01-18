@@ -18,7 +18,7 @@ export class QuizService {
   timer: any;
   qnProgress: number;
   correctAnswerCount: number;
-  language: string
+  targetData: string;
 
   //---------------- Helper Methods---------------
   constructor(
@@ -29,15 +29,15 @@ export class QuizService {
     this.seconds = 0;
     this.qnProgress = 0;
     this.correctAnswerCount = 0;
-    this.language = 'en';
+    this.targetData = 'en';
   }
 
-  setLanguage(language: string){
-    this.language = language;
+  setTargetData(targetData: string) {
+    this.targetData = targetData;
   }
 
-  getLanguage(){
-    return this.language;
+  getTargetData() {
+    return this.targetData;
   }
 
   displayTimeElapsed() {
@@ -70,7 +70,7 @@ export class QuizService {
 
   //---------------- Http Methods---------------
   getQuestions(): Observable<IQuestion[]> {
-    return this.questionCollection.get(this.language).pipe(
+    return this.questionCollection.get(this.targetData).pipe(
       map((questions) => {
         const randomQuestions = this.getRandomQuestions(
           questions,
@@ -117,9 +117,8 @@ export class QuizService {
     body.TimeSpent = this.seconds;
     return of(body);
   }
- 
 
-  getAllQuestions(language: string): Observable<IQuestion[]> {
-    return this.questionCollection.get(language);
+  getAllQuestions(targetData: string): Observable<IQuestion[]> {
+    return this.questionCollection.get(targetData);
   }
 }

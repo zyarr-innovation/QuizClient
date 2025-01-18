@@ -33,8 +33,8 @@ export class RegisterComponent {
     private activatedRoute: ActivatedRoute
   ) {
     activatedRoute.url.subscribe((urlSegments) => {
-      const languageCode = urlSegments[0].path; // 'en' or 'ur'
-      quizService.setLanguage(languageCode.toLowerCase());
+      const targetCode = urlSegments[0].path; // 'en' or 'ur'
+      quizService.setTargetData(targetCode.toLowerCase());
     });
   }
 

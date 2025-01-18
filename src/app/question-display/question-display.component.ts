@@ -7,12 +7,11 @@ import { IQuestion } from '../data/questionCollection';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
-
 @Component({
   selector: 'app-question-display',
   imports: [CommonModule, MatCardModule, MatListModule],
   templateUrl: './question-display.component.html',
-  styleUrl: './question-display.component.css'
+  styleUrl: './question-display.component.css',
 })
 export class QuestionDisplayComponent {
   questionsEnglish!: IQuestion[];
@@ -20,12 +19,13 @@ export class QuestionDisplayComponent {
   baseQuestions: IQuestion[];
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
-    public quizService: QuizService) {
-      this.questionsEnglish = [];
-      this.questionsUrdu = [];
-      this.baseQuestions = [];
-    }
+    private activatedRoute: ActivatedRoute,
+    public quizService: QuizService
+  ) {
+    this.questionsEnglish = [];
+    this.questionsUrdu = [];
+    this.baseQuestions = [];
+  }
 
   ngOnInit() {
     this.activatedRoute.url.subscribe((urlSegments) => {
@@ -33,24 +33,23 @@ export class QuestionDisplayComponent {
       if (lastPath === 'review') {
         forkJoin({
           englishQuestions: this.quizService.getAllQuestions('en'),
-          urduQuestions: this.quizService.getAllQuestions('ur')
+          urduQuestions: this.quizService.getAllQuestions('ur'),
         }).subscribe(({ englishQuestions, urduQuestions }) => {
           this.questionsEnglish = englishQuestions;
           this.questionsUrdu = urduQuestions;
-          this.baseQuestions = englishQuestions; 
+          this.baseQuestions = englishQuestions;
         });
-        
       } else {
         this.questionsEnglish = [];
         this.questionsUrdu = [];
-        const selectedLanguage = this.quizService.getLanguage();
+        const selectedLanguage = this.quizService.getTargetData();
         if (selectedLanguage === 'en') {
-          this.quizService.getAllQuestions('en').subscribe(data => {
+          this.quizService.getAllQuestions('en').subscribe((data) => {
             this.questionsEnglish = data;
             this.baseQuestions = this.questionsEnglish;
           });
         } else if (selectedLanguage === 'ur') {
-          this.quizService.getAllQuestions('ur').subscribe(data => {
+          this.quizService.getAllQuestions('ur').subscribe((data) => {
             this.questionsUrdu = data;
             this.baseQuestions = this.questionsUrdu;
           });
@@ -58,10 +57,16 @@ export class QuestionDisplayComponent {
       }
     });
   }
-    
-  
-  getCorrectAnswerClass(indexQuestion: number, currentIndex: number, language: string): string {
-    const question = language === 'english' ? this.questionsEnglish[indexQuestion] : this.questionsUrdu[indexQuestion];
+
+  getCorrectAnswerClass(
+    indexQuestion: number,
+    currentIndex: number,
+    language: string
+  ): string {
+    const question =
+      language === 'english'
+        ? this.questionsEnglish[indexQuestion]
+        : this.questionsUrdu[indexQuestion];
     const answerIndex = question.answer - 1;
 
     return currentIndex == answerIndex ? 'correct-answer' : '';
